@@ -100,6 +100,9 @@
 }
 .icon-mailEnviados:before {
   content: "\e916";
+  font-size: 90px;
+  padding: 0px;
+  margin: 0px;
 }
 .icon-notaCredito:before {
   content: "\e917";
@@ -145,6 +148,7 @@
 }
 .icon-sms:before {
   content: "\e923";
+  font-size: 20px;
 }
 .icon-tablero:before {
   content: "\e924";
@@ -163,6 +167,7 @@
 }
 .icon-whatsapp:before {
   content: "\e929";
+  font-size: 20px;
 }
 .icon-xml:before {
   content: "\e92a";
