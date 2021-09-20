@@ -1,0 +1,145 @@
+.contenedorHistorialEventos{
+    background: rgb(235, 235, 235);
+    display: grid;
+    grid-gap: 15px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(5, auto);
+    grid-template-areas:    "espacio1 espacio1 espacio1"
+                            "espacio2 espacio3 espacio3"
+                            "espacio4 espacio3 espacio3"
+                            "espacio5 espacio5 espacio5"
+                            "espacio7 espacio7 espacio6";
+}
+
+.contenedorHistorialEventos .espacio1{
+    grid-area: espacio1;
+    width: 100%;
+    background: #fff;
+    border-radius: 10px;
+}
+
+.contenedorHistorialEventos .espacio2{
+    grid-area: espacio2;
+    width: 100%;
+    background: #fff;
+    border-radius: 10px;
+}
+
+.contenedorHistorialEventos .espacio3{
+    grid-area: espacio3;
+    width: 100%;
+    background: #fff;
+    border-radius: 10px;
+}
+
+.contenedorHistorialEventos .espacio4{
+    grid-area: espacio4;
+    width: 100%;
+    background: #fff;
+    border-radius: 10px;
+}
+
+.contenedorHistorialEventos .espacio5{
+    grid-area: espacio5;
+    width: 100%;
+    background: #fff;
+    border-radius: 10px;
+}
+
+.contenedorHistorialEventos .espacio6{
+    grid-area: espacio6;
+    width: 100%;
+    border-radius: 10px;
+    display: flex;
+    justify-content: end;
+    align-items: flex-end;
+    text-align: left;
+}
+
+.table4 th, .table4 td {
+    border-top: none !important;
+    border-left: none !important;
+}
+
+.table4 th, .table4 td{
+    border-bottom: none !important;
+}
+
+.alinearIzq{
+    display: flex;
+    justify-content: end;
+    align-items: flex-end;
+    text-align: left;
+}
+
+.contenedorHistorialEventos2{
+    background: rgb(235, 235, 235);
+    display: grid;
+    grid-gap: 15px;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(3, auto);
+    grid-template-areas:    "espacio1-1"
+                            "espacio2-1"
+                            "espacio3-1";
+}
+
+.contenedorHistorialEventos2 .espacio1-1{
+    grid-area: espacio1-1;
+    width: 100%;
+    background: #fff;
+    border-radius: 10px;
+}
+
+.contenedorHistorialEventos2 .espacio2-1{
+    grid-area: espacio2-1;
+    width: 100%;
+    background: #fff;
+    border-radius: 10px;
+}
+
+.contenedorHistorialEventos2 .espacio3-1{
+    grid-area: espacio3-1;
+    width: 100%;
+    border-radius: 10px;
+    display: flex;
+    justify-content: end;
+    align-items: flex-end;
+    text-align: left;
+}
+
+ul.timeline {
+    list-style-type: none;
+    position: relative;
+}
+ul.timeline:before {
+    content: ' ';
+    background: #d4d9df;
+    display: inline-block;
+    position: absolute;
+    left: 29px;
+    width: 2px;
+    height: 100%;
+    z-index: 400;
+}
+ul.timeline > li {
+    margin: 20px 0;
+    padding-left: 20px;
+}
+ul.timeline > li:before {
+    content: ' ';
+    background: white;
+    display: inline-block;
+    position: absolute;
+    border-radius: 50%;
+    border: 3px solid #22c0e8;
+    left: 20px;
+    width: 20px;
+    height: 20px;
+    z-index: 400;
+}
+
+.focusNone:focus{
+    outline: none;
+    outline-offset: 0;
+}
+

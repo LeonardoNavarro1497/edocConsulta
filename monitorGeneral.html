@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="/datetimepicker/jquery-3.3.1.min.js"></script>
+
+    <!-- Bootstrap -->
+    
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!--table-->
+    <link rel="stylesheet" href="/table/bootstrap-table.css">
+    
+        
+    <link href="/datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="Estilos/monitorGeneral.css">
+    <link rel="stylesheet" href="/Estilos/verHistorialDeEventos.css">
+    <link rel="stylesheet" href="/sprites/icons_portalConsulta-v1.0/icons.css">
+
+    <title>MonitorGeneral</title>
+</head>
+<body id="cuerpo" class="active">
+    
+    <div id="sidebar" class="active">
+        <div class="btn-sidebar">
+            <span>&#9776;</span>
+        </div>
+        <ul>
+            <!--<li>tablero</li>
+            <li>emision</li>
+            <li>recepcion</li>
+            <li>administracion</li>-->
+        </ul>
+    </div>
+
+<main>
+
+    <!--------------------------------reenviar correo----------------------------------------->
+
+    <!-- Modal -->
+    <div class="modal fade" id="verreenviarcorreo" tabindex="-1" aria-labelledby="exampleModalLabel"   
+        aria-hidden="true" style="background: transparent;">
+    
+        <!--x y cabezal-->
+        <div role="document" class="modal-dialog modal-lg" style="padding: 220px 25px 0px 25px;">
+            <div class="modal-content" style="text-align: center; justify-content: center; align-items: center; border-radius: 20px; background: rgb(235, 235, 235); padding: 0px; margin: 0px;">
+                <div class="modal-header" style="border-bottom: none;">
+                    <h5 class="modal-title" id="exampleModalLabel" style="color: #24356b; font-weight: bold; padding-top: 10px; font-size: 13px;">
+                        Escriba uno o varios correos electrónicos separados por;</h5>
+                </div>
+
+                <!--Boton Buscar cliente-->
+                <div class="modal-body" style="background: rgb(235, 235, 235); border-radius: 0px 0px 20px 20px; width: 100%;">
+                    <div style="display: flex; background: transparent; display: grid; grid-template-columns: repeat(1, 1fr); grid-template-rows: repeat(2, auto);">
+                        <div style="display: flex; background: rgb(235, 235, 235); width: 100%; grid-column: span 1; grid-row: span 1;">
+                            <input type="text" placeholder="Correo eléctronico" class="focusNone"
+                                style="border-radius: 10px; background: #fff; color: rgba(179, 179, 179, 0.815); border: none; font-size: 13px; width: 100%;
+                                    text-align: left; padding: 8px 5px 8px 15px; ">
+                        </div>
+                        <div style="grid-column: span 1; grid-row: span 2; padding: 15px;">
+                            <button data-toggle="modal" data-dismiss="modal" aria-label="Close" data-target="#correoenviadoexitosamente" class="btn btn-primary" style="grid-column: span 1; border-radius: 10px; width: 25%;">Enviar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--correo enviado exitosamente-->
+
+    <div class="modal fade" id="correoenviadoexitosamente" tabindex="-1" aria-labelledby="exampleModalLabel"   
+        aria-hidden="true" style="background: transparent;">
+    
+        <!--x y cabezal-->
+        <div role="document" class="modal-dialog modal-sm" style="padding: 220px 25px 0px 25px;">
+            <div class="modal-content" style="text-align: center; justify-content: center; align-items: center; border-radius: 20px; background: rgb(235, 235, 235); padding: 0px; margin: 0px;">
+                <div class="modal-header" style="border-bottom: none;">
+                    <h5 class="modal-title" id="exampleModalLabel" style="color: #24356b; font-weight: bold; padding-top: 10px; font-size: 13px;">
+                        Correo enviado exitosamente</h5>
+                </div>
+
+                <!--Boton Buscar cliente-->
+                <div class="modal-body" style="background: rgb(235, 235, 235); border-radius: 0px 0px 20px 20px; width: 100%;">
+                    <div style="display: flex; background: transparent; display: grid; grid-template-columns: repeat(1, 1fr); grid-template-rows: repeat(2, auto);">
+                        <div style="display: flex; background: rgb(235, 235, 235); width: 100%; grid-column: span 1; grid-row: span 1;">
+                        </div>
+                        <div style="grid-column: span 1; grid-row: span 2;">
+                            <button data-dismiss="modal" aria-label="Close" class="btn btn-primary" style="grid-column: span 1; border-radius: 10px; width: 100%;">Ok</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--------------------------------reenviar whatsapp----------------------------------------->
+
+    <!-- Modal -->
+    <div class="modal fade" id="verreenviarwhatsapp" tabindex="-1" aria-labelledby="exampleModalLabel"   
+        aria-hidden="true" style="background: transparent;">
+    
+        <!--x y cabezal-->
+        <div role="document" class="modal-dialog modal-lg" style="padding: 220px 25px 0px 25px;">
+            <div class="modal-content" style="text-align: center; justify-content: center; align-items: center; border-radius: 20px; background: rgb(235, 235, 235); padding: 0px; margin: 0px;">
+                <div class="modal-header" style="border-bottom: none;">
+                    <h5 class="modal-title" id="exampleModalLabel" style="color: #24356b; font-weight: bold; padding-top: 10px; font-size: 13px;">
+                        Escriba uno o varios números de whatsapp separados por;</h5>
+                </div>
+
+                <!--Boton Buscar cliente-->
+                <div class="modal-body" style="background: rgb(235, 235, 235); border-radius: 0px 0px 20px 20px; width: 100%;">
+                    <div style="display: flex; background: transparent; display: grid; grid-template-columns: repeat(1, 1fr); grid-template-rows: repeat(2, auto);">
+                        <div style="display: flex; background: rgb(235, 235, 235); width: 100%; grid-column: span 1; grid-row: span 1;">
+                            <input type="text" placeholder="Número de whatsapp" class="focusNone"
+                                style="border-radius: 10px; background: #fff; color: rgba(179, 179, 179, 0.815); border: none; font-size: 13px; width: 100%;
+                                    text-align: left; padding: 8px 5px 8px 15px; ">
+                        </div>
+                        <div style="grid-column: span 1; grid-row: span 2; padding: 15px;">
+                            <button data-toggle="modal" data-dismiss="modal" aria-label="Close" data-target="#whatsappenviadoexitosamente" class="btn btn-primary" style="grid-column: span 1; border-radius: 10px; width: 25%;">Enviar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--whatsapp enviado exitosamente-->
+
+    <div class="modal fade" id="whatsappenviadoexitosamente" tabindex="-1" aria-labelledby="exampleModalLabel"   
+        aria-hidden="true" style="background: transparent;">
+    
+        <!--x y cabezal-->
+        <div role="document" class="modal-dialog modal-sm" style="padding: 220px 25px 0px 25px;">
+            <div class="modal-content" style="text-align: center; justify-content: center; align-items: center; border-radius: 20px; background: rgb(235, 235, 235); padding: 0px; margin: 0px;">
+                <div class="modal-header" style="border-bottom: none;">
+                    <h5 class="modal-title" id="exampleModalLabel" style="color: #24356b; font-weight: bold; padding-top: 10px; font-size: 13px;">
+                        Whatsapp enviado exitosamente</h5>
+                </div>
+
+                <!--Boton Buscar cliente-->
+                <div class="modal-body" style="background: rgb(235, 235, 235); border-radius: 0px 0px 20px 20px; width: 100%;">
+                    <div style="display: flex; background: transparent; display: grid; grid-template-columns: repeat(1, 1fr); grid-template-rows: repeat(2, auto);">
+                        <div style="display: flex; background: rgb(235, 235, 235); width: 100%; grid-column: span 1; grid-row: span 1;">
+                        </div>
+                        <div style="grid-column: span 1; grid-row: span 2;">
+                            <button data-dismiss="modal" aria-label="Close" class="btn btn-primary" style="grid-column: span 1; border-radius: 10px; width: 100%;">Ok</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--------------------------------reenviar whatsapp----------------------------------------->
+
+    <!-- Modal -->
+    <div class="modal fade" id="verreenviarsms" tabindex="-1" aria-labelledby="exampleModalLabel"   
+        aria-hidden="true" style="background: transparent;">
+    
+        <!--x y cabezal-->
+        <div role="document" class="modal-dialog modal-lg" style="padding: 220px 25px 0px 25px;">
+            <div class="modal-content" style="text-align: center; justify-content: center; align-items: center; border-radius: 20px; background: rgb(235, 235, 235); padding: 0px; margin: 0px;">
+                <div class="modal-header" style="border-bottom: none;">
+                    <h5 class="modal-title" id="exampleModalLabel" style="color: #24356b; font-weight: bold; padding-top: 10px; font-size: 13px;">
+                        Escriba uno o varios números separados por;</h5>
+                </div>
+
+                <!--Boton Buscar cliente-->
+                <div class="modal-body" style="background: rgb(235, 235, 235); border-radius: 0px 0px 20px 20px; width: 100%;">
+                    <div style="display: flex; background: transparent; display: grid; grid-template-columns: repeat(1, 1fr); grid-template-rows: repeat(2, auto);">
+                        <div style="display: flex; background: rgb(235, 235, 235); width: 100%; grid-column: span 1; grid-row: span 1;">
+                            <input type="text" placeholder="SMS" class="focusNone"
+                                style="border-radius: 10px; background: #fff; color: rgba(179, 179, 179, 0.815); border: none; font-size: 13px; width: 100%;
+                                    text-align: left; padding: 8px 5px 8px 15px; ">
+                        </div>
+                        <div style="grid-column: span 1; grid-row: span 2; padding: 15px;">
+                            <button data-toggle="modal" data-dismiss="modal" aria-label="Close" data-target="#smsenviadoexitosamente" class="btn btn-primary" style="grid-column: span 1; border-radius: 10px; width: 25%;">Enviar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--whatsapp enviado exitosamente-->
+
+    <div class="modal fade" id="smsenviadoexitosamente" tabindex="-1" aria-labelledby="exampleModalLabel"   
+        aria-hidden="true" style="background: transparent;">
+    
+        <!--x y cabezal-->
+        <div role="document" class="modal-dialog modal-sm" style="padding: 220px 25px 0px 25px;">
+            <div class="modal-content" style="text-align: center; justify-content: center; align-items: center; border-radius: 20px; background: rgb(235, 235, 235); padding: 0px; margin: 0px;">
+                <div class="modal-header" style="border-bottom: none;">
+                    <h5 class="modal-title" id="exampleModalLabel" style="color: #24356b; font-weight: bold; padding-top: 10px; font-size: 13px;">
+                        SMS enviado exitosamente</h5>
+                </div>
+
+                <!--Boton Buscar cliente-->
+                <div class="modal-body" style="background: rgb(235, 235, 235); border-radius: 0px 0px 20px 20px; width: 100%;">
+                    <div style="display: flex; background: transparent; display: grid; grid-template-columns: repeat(1, 1fr); grid-template-rows: repeat(2, auto);">
+                        <div style="display: flex; background: rgb(235, 235, 235); width: 100%; grid-column: span 1; grid-row: span 1;">
+                        </div>
+                        <div style="grid-column: span 1; grid-row: span 2;">
+                            <button data-dismiss="modal" aria-label="Close" class="btn btn-primary" style="grid-column: span 1; border-radius: 10px; width: 100%;">Ok</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--------------------------------------Ver historial de eventos--------------------------------------------->
+    <!-- Modal -->
+    <div class="modal fade" id="verhistorialdeeventos" tabindex="-1" aria-labelledby="exampleModalLabel"  
+        aria-hidden="true" style="background: transparent;">
+    
+        <!--X, cabezal y tamaño-->
+        <div role="document" class="modal-dialog modal-lg" style="padding: 0px 0px 0px 0px;">
+            <div class="modal-content" style="border-radius: 20px; background: rgb(235, 235, 235);">
+                <div class="modal-header" style="border-bottom: none;">
+                    <h5 class="modal-title" id="exampleModalLabel" style="color: #24356b; font-weight: 800;">Historial de eventos de documentos eléctronicos</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <!--Boton Buscar cliente-->
+                <div class="modal-body" style="background: rgb(235, 235, 235); border-radius: 0px 0px 20px 20px;">
+                    <div>
+                        <div class="contenedorHistorialEventos">
+                            <!--espacio1-->
+                            <div class="espacio1" style="padding: 5px 20px 5px 20px;">
+                                <table class="tabla2 table table-sm table-borderless" style="margin: 0px; padding: 0px;">
+                                    <tbody style="font-size: 13px; font-weight: bold; color: rgb(134, 134, 134);">
+                                      <tr>
+                                        <td style="color: #24356b;">Autorizadas</td>
+                                        <td style="display: flex; justify-content: end; color: #24356b;">5</td>                            
+                                      </tr>
+                                      <tr class="lineaHorizontal2">
+                                        <td style="color: #24356b;">Rechazadas</td>
+                                        <td style="display: flex; justify-content: end; color: #24356b;">2</td>
+                                      </tr>
+                                      <tr class="lineaHorizontal2">
+                                        <td style="color: #24356b;">Pendiente envio</td>
+                                        <td style="display: flex; justify-content: end; color: #24356b;">2</td>
+                                      </tr>
+                                      <tr class="lineaHorizontal2">
+                                        <td style="color: #24356b;">Pendiente validación</td>
+                                        <td style="display: flex; justify-content: end; color: #24356b;">2</td>
+                                      </tr>
+                                      <tr class="lineaHorizontal2">
+                                        <td style="color: #24356b;">Pendiente validación</td>
+                                        <td style="display: flex; justify-content: end; color: #24356b;">2</td>
+                                      </tr>
+                                      <tr class="lineaHorizontal2">
+                                        <td style="color: #24356b;">Pendiente validación</td>
+                                        <td style="display: flex; justify-content: end; color: #24356b;">2</td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                            </div>
+                            <!--espacio2-->
+                            <div class="espacio2">
+                                <p style="padding: 25px 10px 0 10px; margin: 0px; line-height: 0%; font-size: 13px; color: #24356b; font-weight: bold;">Fecha y hora registro eDoc:</p><br>
+                                <p style="padding: 0px 10px 15px 10px; margin: 0px; line-height: 0%; font-size: 13px; color: #24356b; font-weight: bold;">08/08/2021 - 01:00:00</p>
+                            </div>
+                            <!--espacio3-->
+                            <div class="espacio3" style="padding: 5px 20px 5px 20px;">
+                                <p style="padding: 15px 10px 20px 10px; margin: 0px; line-height: 0%; font-size: 13px; color: #24356b; font-weight: bold;">Validaciones:</p>
+                                <table class="tabla2 table table-sm table-borderless table-striped" style="margin: 0px; padding: 0px;">
+                                    <tbody style="font-size: 13px; font-weight: bold; color: rgb(134, 134, 134);">
+                                      <tr>
+                                        <td style="color: #24356b; border-radius: 10px 0px 0 10px;">Autorizadas</td>
+                                        <td style="justify-content: end; text-align: end; color: #24356b; border-radius: 0px 10px 10px 0px;">5</td>                            
+                                      </tr>
+                                      <tr>
+                                        <td style="color: #24356b;">Rechazadas</td>
+                                        <td style="justify-content: end; text-align: end; color: #24356b; border-radius: 0px 10px 10px 0px;">2</td>
+                                      </tr>
+                                      <tr>
+                                        <td style="color: #24356b; border-radius: 10px 0px 0 10px;">Pendiente envio</td>
+                                        <td style="justify-content: end; text-align: end; color: #24356b; border-radius: 0px 10px 10px 0px;">2</td>
+                                      </tr>
+                                      <tr>
+                                        <td style="color: #24356b;">Pendiente validación</td>
+                                        <td style="justify-content: end; text-align: end; color: #24356b; border-radius: 0px 10px 10px 0px;">2</td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                            </div>
+                            <!--espacio4-->
+                            <div class="espacio4">
+                                <p style="padding: 25px 10px 0 10px; margin: 0px; line-height: 0%; font-size: 13px; color: #24356b; font-weight: bold;">Fecha y hora registro eDoc:</p><br>
+                                <p style="padding: 0px 10px 15px 10px; margin: 0px; line-height: 0%; font-size: 13px; color: #24356b; font-weight: bold;">08/08/2021 - 01:00:00</p>
+                            </div>
+                            <!--espacio5-->
+                            <div class="espacio5">
+                                <table class="table4 table table-sm table-striped table-borderless">
+                                    <thead>  
+                                        <tr>
+                                            <th data-field="accion" style="font-size: 13px; font-weight: normal; text-align: center; align-items: center; justify-content: center; color: #24356b; font-weight: bold;" scope="col">Acción</th>
+                                            <th data-field="estado" style="font-size: 13px; font-weight: normal; text-align: center; align-items: center; justify-content: center; color: #24356b; font-weight: bold;" scope="col">Estado</th>
+                                            <th data-field="noedoc" style="font-size: 13px; font-weight: normal; text-align: center; align-items: center; justify-content: center; color: #24356b; font-weight: bold;" scope="col">No. Doc</th>
+                                        </tr>
+                                    </thead>
+                                    <tr>
+                                        <th scope="row" style="border-radius: 20px 0px 0px 20px;">
+                                            <div style="justify-content: center; text-align: center; align-items: center; color: #24356b; font-weight: normal;">1</div>
+                                        </th>
+                                        <td style="color: #24356b; justify-content: center; text-align: center; align-items: center;">uno</td>
+                                        <td style="color: #24356b; justify-content: center; text-align: center; align-items: center;">dos</td>
+                                        <td style="border-radius: 0px 20px 20px 0px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" style="color: #24356b; justify-content: center; text-align: center; align-items: center; font-weight: normal;">2</th>
+                                        <td style="color: #24356b; justify-content: center; text-align: center; align-items: center;">uno</td>
+                                        <td style="color: #24356b; justify-content: center; text-align: center; align-items: center;">dos</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" style="border-radius: 20px 0px 0px 20px; color: #24356b; justify-content: center; text-align: center; align-items: center; font-weight: normal;">3</th>
+                                        <td style="color: #24356b; justify-content: center; text-align: center; align-items: center;">uno</td>
+                                        <td style="color: #24356b; justify-content: center; text-align: center; align-items: center;">dos</td>
+                                        <td style="border-radius: 0px 20px 20px 0px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" style="color: #24356b; justify-content: center; text-align: center; align-items: center; font-weight: normal;">4</th>
+                                        <td style="color: #24356b; justify-content: center; text-align: center; align-items: center;">uno</td>
+                                        <td style="color: #24356b; justify-content: center; text-align: center; align-items: center;">dos</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="espacio6">
+                                <div class="btn btn-primary" style="border-radius: 10px; font-size: 13px; padding: 5px; margin: 0 10px 0 10px;"
+                                    data-toggle="modal" data-dismiss="modal" aria-label="Close" data-target="#verhistorialdeeventos2">Ver línea de tiempo</div>
+                                <div class="btn btn-primary" style="border-radius: 10px; font-size: 13px; padding: 5px;"
+                                    data-toggle="modal" data-dismiss="modal" aria-label="Close">Cerrar</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--------------------------------------Ver historial de eventos 2--------------------------------------------->
+    <!-- Modal -->
+    <div class="modal fade" id="verhistorialdeeventos2" tabindex="-1" aria-labelledby="exampleModalLabel"  
+        aria-hidden="true" style="background: transparent;">
+    
+        <!--X, cabezal y tamaño-->
+        <div role="document" class="modal-dialog modal-lg" style="padding: 0px 0px 0px 0px;">
+            <div class="modal-content" style="border-radius: 20px; background: rgb(235, 235, 235);">
+                <div class="modal-header" style="border-bottom: none;">
+                    <h5 class="modal-title" id="exampleModalLabel" style="color: #24356b; font-weight: 800;">Historial de eventos de documentos eléctronicos</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <!--Boton Buscar cliente-->
+                <div class="modal-body" style="background: rgb(235, 235, 235); border-radius: 0px 0px 20px 20px;">
+                    <div>
+                        <div class="contenedorHistorialEventos2">
+                            <!--espacio1-1-->
+                            <div class="espacio1-1" style="padding: 5px 20px 5px 20px;">
+                                <table class="tabla2 table table-sm table-borderless" style="margin: 0px; padding: 0px;">
+                                    <tbody style="font-size: 13px; font-weight: bold; color: rgb(134, 134, 134);">
+                                      <tr>
+                                        <td style="color: #24356b;">Autorizadas</td>
+                                        <td style="display: flex; justify-content: end; color: #24356b;">5</td>                            
+                                      </tr>
+                                      <tr class="lineaHorizontal2">
+                                        <td style="color: #24356b;">Rechazadas</td>
+                                        <td style="display: flex; justify-content: end; color: #24356b;">2</td>
+                                      </tr>
+                                      <tr class="lineaHorizontal2">
+                                        <td style="color: #24356b;">Pendiente envio</td>
+                                        <td style="display: flex; justify-content: end; color: #24356b;">2</td>
+                                      </tr>
+                                      <tr class="lineaHorizontal2">
+                                        <td style="color: #24356b;">Pendiente validación</td>
+                                        <td style="display: flex; justify-content: end; color: #24356b;">2</td>
+                                      </tr>
+                                      <tr class="lineaHorizontal2">
+                                        <td style="color: #24356b;">Pendiente validación</td>
+                                        <td style="display: flex; justify-content: end; color: #24356b;">2</td>
+                                      </tr>
+                                      <tr class="lineaHorizontal2">
+                                        <td style="color: #24356b;">Pendiente validación</td>
+                                        <td style="display: flex; justify-content: end; color: #24356b;">2</td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                            </div>
+                            <!--espacio2-1-->
+                            <div class="espacio2-1">
+                                <ul class="timeline">
+                                    <li>
+                                        <p style="padding-left: 25px;">Lorem ipsum dolor sit amet</p>
+                                    </li>
+                                    <li>
+                                        <p style="padding-left: 25px;">Curabitur purus sem, malesuada eu luctus eget</p>
+                                    </li>
+                                    <li>
+                                        <p style="padding-left: 25px;">Fusce ullamcorper ligula sit amet quam accumsan aliquet.</p>
+                                    </li>
+                                    <li>
+                                        <p style="padding-left: 25px;">Fusce ullamcorper ligula sit amet quam accumsan aliquet.</p>
+                                    </li>
+                                    <li>
+                                        <p style="padding-left: 25px;">Fusce ullamcorper ligula sit amet quam accumsan aliquet.</p>
+                                    </li>
+                                    <li>
+                                        <p style="padding-left: 25px;">Fusce ullamcorper ligula sit amet quam accumsan aliquet.</p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!--espacio3-1-->
+                            <div class="espacio3-1">
+                                <div class="btn btn-primary" style="border-radius: 10px; font-size: 13px; padding: 5px; margin: 0 10px 0 10px;"
+                                    data-toggle="modal" data-dismiss="modal" aria-label="Close" data-target="#verhistorialdeeventos">Ver por módulos</div>
+                                <div class="btn btn-primary" style="border-radius: 10px; font-size: 13px; padding: 5px;"
+                                    data-toggle="modal" data-dismiss="modal" aria-label="Close">Cerrar</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--------------------------------contenido----------------------------------------->
+
+    <div id="cuerpoPrincipal" class="margenIzquierda" style="padding: 10px 40px 0px 0px;">
+        <div class="contenedor">
+            <div class="encabezado">
+                <h3>nav-bar</h3>
+            </div>
+
+            <div class="contenido">
+                <div class="slot1">
+                    <span class="icon-emitidas" style="display: flex; justify-content: center; margin: 0px 20px 0px 20px;"></span>
+                    <p style="line-height: 120%; margin-top: 20px; margin-bottom: 20px; margin-left: 10px; margin-right: 10px;">
+                        <a style="font-size: 50px;">35</a><br>Facturas<br>emitidas hoy</p>
+                </div>
+                <div class="slot2">
+                    <table class="tabla2 table table-sm table-borderless" style="margin: 0px; padding: 0px;">
+                        <!-- <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">First</th>
+                            <th scope="col">Last</th>
+                            <th scope="col">Handle</th>
+                          </tr>
+                        </thead> -->
+                        <tbody style="font-size: 13px; font-weight: bold; color: rgb(134, 134, 134);">
+                          <tr style="border-left: solid rgb(226, 226, 226) 1.3px; border-right: solid rgb(226, 226, 226) 1.3px;">
+                            <td>Autorizadas</td>
+                            <td style="display: flex; justify-content: end;">5</td>                            
+                          </tr>
+                          <tr class="lineaHorizontal2" style="border-left: solid rgb(226, 226, 226) 1.3px; border-right: solid rgb(226, 226, 226) 1.3px;">
+                            <td>Rechazadas</td>
+                            <td style="display: flex; justify-content: end;">2</td>
+                          </tr>
+                          <tr class="lineaHorizontal2" style="border-left: solid rgb(226, 226, 226) 1.3px; border-right: solid rgb(226, 226, 226) 1.3px;">
+                            <td>Pendiente envio</td>
+                            <td style="display: flex; justify-content: end;">2</td>
+                          </tr>
+                          <tr class="lineaHorizontal2" style="border-left: solid rgb(226, 226, 226) 1.3px; border-right: solid rgb(226, 226, 226) 1.3px;">
+                            <td>Pendiente validación</td>
+                            <td style="display: flex; justify-content: end;">2</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                
+                </div>
+                <div class="slot3">
+                    <table class="tabla2 table table-borderless" style="margin: 0px; padding: 0px;">
+                        <tbody style="font-size: 13px; font-weight: bold; color: rgb(134, 134, 134);">
+                          <tr>
+                            <td><span class="icon-notaCredito" style=" margin-right: 20px;"></span>
+                                Nota crédito</td>
+                            <td style="display: flex; justify-content: right; padding-top: 15px;">5</td>
+                          </tr>
+                          <tr class="lineaHorizontal2" style="border-top: solid rgb(226, 226, 226) 1.3px;">
+                            <td><span class="icon-notaDebito" style="margin-right: 20px;"></span>
+                                Nota débito</td>
+                            <td style="display: flex; justify-content: right; padding-top: 15px;">5</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                </div>
+            </div>
+
+            <!--------------------------------Buscar----------------------------------------->
+
+            <div style="display: flex; background: rgb(235, 235, 235);">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalBuscarCliente" 
+                    style="border-radius: 10px; background: #fff; color: rgba(179, 179, 179, 0.815); border: none; font-size: 13px; width: 100%;
+                        text-align: left; padding: 8px 5px 8px 15px;">
+                    Buscar cliente
+                </button>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModalBuscarCliente" tabindex="-1" aria-labelledby="exampleModalLabel"   
+                aria-hidden="true" style="background: transparent;">
+            
+                <!--x y cabezal-->
+                <div role="document" class="modal-dialog" style="padding: 220px 25px 0px 25px;">
+                    <div class="modal-content" style="border-radius: 20px; background: rgb(235, 235, 235); padding: 0px; margin: 0px;">
+                        <div class="modal-header" style="border-bottom: none;">
+                            <h5 class="modal-title" id="exampleModalLabel" style="color: #24356b; font-weight: bold; padding-top: 10px;">Búsqueda cliente</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <!--Boton Buscar cliente-->
+                        <div class="modal-body" style="background: rgb(235, 235, 235); border-radius: 0px 0px 20px 20px;">
+                            <div style="display: flex; background: transparent; justify-content: center;">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-dismiss="modal" 
+                                aria-label="Close" data-target="#exampleModalBuscarClienteTabla" 
+                                    style="border-radius: 10px 0 0 10px; background: #fff; color: rgba(179, 179, 179, 0.815); border: none; font-size: 13px; width: 300px;
+                                        text-align: left; width: 100%;">
+                                   Nombre o razón social
+                                </button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-dismiss="modal" 
+                                    aria-label="Close" data-target="#exampleModalBuscarClienteTabla"
+                                    
+                                    style="border-radius: 0px 10px 10px 0px">
+                                    <span class="icon-buscar" style="width: 100%; height: 15px; display: flex; justify-content: center;
+                                    align-items: center; text-align: center;"></span>
+                                </button>
+                            </div>  
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-----------------------------adentro------------------------------->
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModalBuscarClienteTabla" tabindex="-1" aria-labelledby="exampleModalLabel"   
+            aria-hidden="true" style="background: transparent;">
+            
+            <div role="document" class="modal-dialog" style="padding: 120px 25px 0px 25px;">
+                <div class="modal-content" style="border-radius: 20px; height: 500px; background: rgb(235, 235, 235);">
+                    <div class="modal-header" style="border-bottom: none;">
+                        <h5 class="modal-title" id="exampleModalLabel" style="color: #24356b; font-weight: bold; padding-top: 10px;">Búsqueda cliente</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div style="display: flex; background: rgb(235, 235, 235);">
+                            <input class="focusNone" type="text" placeholder="Buscar"
+                                style="border-radius: 10px 0 0 10px; background: #fff; color: rgba(179, 179, 179, 0.815); border: none; font-size: 13px; width: 100%;
+                                    text-align: left; padding: 8px 5px 8px 15px;">
+                            <button type="button" class="btn btn-primary" style="border-radius: 0px 10px 10px 0px;"
+                                data-toggle="modal" data-dismiss="modal" 
+                                aria-label="Close" data-target="#buscarseleccionar">
+                                <span class="icon-buscar" style="width: 15px; height: 15px; display: flex; justify-content: center;
+                                align-items: center; text-align: center; margin: 4px 0px 4px 0px;"></span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div style="background: #fff; padding: 20px; border-radius: 20px;">
+                    <div class="tabla5">
+                        <div class="table-responsive">
+                            <table id="tb2" class="table3 table table-striped table-borderless table-sm" data-show-header="true" data-pagination="true"
+                                    data-id-field="name"
+                                    data-page-list="[5, 10, 25, 50, 100, ALL]"
+                                    data-page-size="6" >
+                                
+                                    <thead> 
+                                    <tr>
+                                        <th data-field="accion" style="font-size: 13px; font-weight: normal; text-align: center; align-items: center; justify-content: center;" scope="col">Acción</th>
+                                        <th data-field="estado" style="font-size: 13px; font-weight: normal; text-align: center; align-items: center; justify-content: center;" scope="col">Estado</th>
+                                        <th data-field="noedoc" style="font-size: 13px; font-weight: normal; text-align: center; align-items: center; justify-content: center;" scope="col">No. Doc</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row" style="border-radius: 20px 0px 0px 20px;">1</th>
+                                            <td>uno</td>
+                                            <td style="border-radius: 0px 20px 20px 0px;">dos</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>uno</td>
+                                            <td>dos</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" style="border-radius: 20px 0px 0px 20px;">3</th>
+                                            <td>uno</td>
+                                            <td style="border-radius: 0px 20px 20px 0px;">dos</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">4</th>
+                                            <td>uno</td>
+                                            <td>dos</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" style="border-radius: 20px 0px 0px 20px;">5</th>
+                                            <td>uno</td>
+                                            <td style="border-radius: 0px 20px 20px 0px;">dos</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" style="border-radius: 20px 0px 0px 20px;">6</th>
+                                            <td>uno</td>
+                                            <td style="border-radius: 0px 20px 20px 0px;">dos</td>
+                                        </tr>
+                                    </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--------------------------------Buscar mas boton seleccionar----------------------------------------->
+
+        <!-- Modal -->
+        <div class="modal fade" id="buscarseleccionar" tabindex="-1" aria-labelledby="exampleModalLabel"   
+            aria-hidden="true" style="background: transparent;">
+        
+            <!--x y cabezal-->
+            <div role="document" class="modal-dialog" style="padding: 220px 25px 0px 25px;">
+                <div class="modal-content" style="border-radius: 20px; background: rgb(235, 235, 235); padding: 0px; margin: 0px;">
+                    <div class="modal-header" style="border-bottom: none;">
+                        <h5 class="modal-title" id="exampleModalLabel" style="color: #24356b; font-weight: bold; padding-top: 10px;">Búsqueda cliente</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <!--Boton Buscar cliente-->
+                    <div class="modal-body" style="background: rgb(235, 235, 235); border-radius: 0px 0px 20px 20px;">
+                        <div style="display: flex; background: transparent; justify-content: center;">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-dismiss="modal" 
+                            aria-label="Close" data-target="#exampleModalBuscarClienteTabla" 
+                                style="border-radius: 10px 0 0 10px; background: #fff; color: rgba(179, 179, 179, 0.815); border: none; font-size: 13px; width: 300px;
+                                    text-align: left; width: 100%;">
+                               Nombre o razón social
+                            </button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-dismiss="modal" 
+                                aria-label="Close" data-target="#exampleModalBuscarClienteTabla"
+                                
+                                style="border-radius: 0px 10px 10px 0px">
+                                <span class="icon-buscar" style="width: 100%; height: 15px; display: flex; justify-content: center;
+                                align-items: center; text-align: center;"></span>
+                            </button>
+                        </div>  
+                    </div>
+                    <div style="padding: 10px; display: flex; justify-content: right; align-items: flex-end;">
+                        <button class="btn btn-primary"data-toggle="modal" data-dismiss="modal" 
+                        aria-label="Close" style="border-radius: 10px;">Seleccionar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+            <!--------------------------------Buscar----------------------------------------->
+
+            <div class="buscar" style="background: rgb(235, 235, 235); display: grid; grid-column: span 1;">
+                <div class="dropdown" style="background: rgb(235, 235, 235); display: grid; grid-column: span 1;">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" 
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
+                    style="background: rgb(255, 255, 255); color: rgba(179, 179, 179, 0.815); font-size: 13px;
+                    display: flex; text-align: left; align-items: center; border-radius: 10px; border: none;">
+                    Todos los tipos de documentos
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="width: 100%; background:
+                            rgba(216, 216, 216, 0.918); border-radius: 10px;">
+                            <a class="dropdown-item" style="color: rgb(0, 57, 122); font-size: 13px;" href="#">Factura</a>
+                            <div class="lineaHorizontal" style="background: rgb(194, 194, 194); width: 95%; margin: 0px 0px 0px 9px;"></div>
+                            <a class="dropdown-item" style="color: rgb(0, 57, 122); font-size: 13px;" href="#">Nota débito</a>
+                            <div class="lineaHorizontal" style="background: rgb(194, 194, 194); width: 95%; margin: 0px 0px 0px 9px;"></div>
+                            <a class="dropdown-item" style="color: rgb(0, 57, 122); font-size: 13px;" href="#">Nota crédito</a>
+                    </div>
+                  </div>
+            </div>
+
+            <!--------------------------------Buscar----------------------------------------->
+
+            <div class="buscar" style="background: rgb(235, 235, 235); display: grid; grid-column: span 1;">
+                <div class="dropdown" style="background: rgb(235, 235, 235); display: grid; grid-column: span 1;">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" 
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
+                        style="background: rgb(255, 255, 255); color: rgba(179, 179, 179, 0.815); font-size: 13px;
+                        display: flex; text-align: left; align-items: center; border-radius: 10px; border: none;">
+                        Todos los estados de validación
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="width: 100%; background:
+                            rgba(216, 216, 216, 0.918); border-radius: 10px;">
+                            <a class="dropdown-item" style="color: rgb(0, 57, 122); font-size: 13px;" href="#">Autorizados</a>
+                            <div class="lineaHorizontal" style="background: rgb(194, 194, 194); width: 95%; margin: 0px 0px 0px 9px;"></div>
+                            <a class="dropdown-item" style="color: rgb(0, 57, 122); font-size: 13px;" href="#">Rechazados</a>
+                            <div class="lineaHorizontal" style="background: rgb(194, 194, 194); width: 95%; margin: 0px 0px 0px 9px;"></div>
+                            <a class="dropdown-item" style="color: rgb(0, 57, 122); font-size: 13px;" href="#">Devueltos</a>
+                            <div class="lineaHorizontal" style="background: rgb(194, 194, 194); width: 95%; margin: 0px 0px 0px 9px;"></div>
+                            <a class="dropdown-item" style="color: rgb(0, 57, 122); font-size: 13px;" href="#">Error de firma</a>
+                    </div>
+                  </div>
+            </div>
+
+            <!--------------------------------Fecha----------------------------------------->
+
+            <div class="fecha" style="display: flex; grid-column: span 1; background: rgb(235, 235, 235);">
+                <div style="width: 50%; padding-right: 5px;">
+                    <input type="text" name="fecha" id="fechaDesde" placeholder="Fecha desde" class="form-control" readonly>
+                </div>
+                <div style="width: 50%; padding-left: 5px;">
+                    <input type="text" name="fecha" id="fechaHasta" placeholder="Fecha hasta" class="form-control" readonly>
+                </div>
+            </div>
+
+                <div class="fecha" style="display: flex; grid-column: span 2; background: rgb(235, 235, 235);">
+
+                    <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="border-radius: 10px;">
+                            <span class="icon-buscar" style="width: 15px; height: 15px; display: flex; justify-content: center;
+                            align-items: center; text-align: center;"></span>
+                        </button>
+
+                </div>
+
+                <!--------------------------------Buscar Tabla----------------------------------------->
+
+                <div class="buscarTabla" style="display: flex; background: rgb(235, 235, 235); justify-content: right;
+                    text-align: right; align-items: flex-end;">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" style="border-radius: 10px;">
+                        <span class="icon-descargaXls" style="width: 15px; height: 15px; display: flex; justify-content: center;
+                        align-items: center; text-align: center; margin: 4px 0px 4px 0px;"></span>
+                    </button>
+
+                    <!--buscar tabla-->
+
+                    <div style="display: flex; background: rgb(235, 235, 235);">
+                        <input type="text" placeholder="Buscar"
+                            style="border-radius: 10px 0 0 10px; background: #fff; color: rgba(179, 179, 179, 0.815); border: none; font-size: 13px; width: 300px;
+                                text-align: left; padding: 8px 5px 8px 15px;">
+                        <button type="button" class="btn btn-primary" style="border-radius: 0px 10px 10px 0px">
+                            <span class="icon-buscar" style="width: 15px; height: 15px; display: flex; justify-content: center;
+                            align-items: center; text-align: center; margin: 4px 0px 4px 0px;"></span>
+                        </button>
+                    </div>
+
+                    <div class="btn-group">
+                        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                            style="font-size: 13px; background: transparent; border: none; color: rgb(134, 134, 134); display: flex; 
+                                justify-content: center; align-items: center; text-align: center;">
+                          Mostrar 5
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" style="font-size: 15px; display: flex; justify-content: center;" href="#">Cinco</a>
+                            <a class="dropdown-item" style="font-size: 15px; display: flex; justify-content: center;" href="#">Diez</a>
+                            <a class="dropdown-item" style="font-size: 15px; display: flex; justify-content: center;" href="#">Quince</a>
+                            <a class="dropdown-item" style="font-size: 15px; display: flex; justify-content: center;" href="#">Veinte</a>
+                            <a class="dropdown-item" style="font-size: 15px; display: flex; justify-content: center;" href="#">Todos</a>
+                            
+                        </div>
+                      </div>
+                </div>
+
+            <!--------------------------------Tabla----------------------------------------->
+
+            <div class="tabla">
+                <div class="table-responsive">
+                    <table id="tb" class="table3 table table-striped table-bordered" 
+                            data-show-header="true" data-pagination="true"
+                            data-id-field="name"
+                            data-page-list="[5, 10, 25, 50, 100, ALL]"
+                            data-page-size="5"
+                            >
+                        <div class="tabla3">
+                            <thead>
+                                
+                            <tr>
+                                <!-- <th data-field="name" data-formatter="nameFormatter">Name</th>
+                                <th data-field="stargazers_count" data-formatter="starsFormatter">Stars</th>
+                                <th data-field="forks_count" data-formatter="forksFormatter">Forks</th>
+                                <th data-field="description">Description</th> -->
+                                <th data-field="accion" style="font-size: 13px; font-weight: normal; text-align: center; align-items: center; justify-content: center;" scope="col">Acción</th>
+                                <th data-field="estado" style="font-size: 13px; font-weight: normal; text-align: center; align-items: center; justify-content: center;" scope="col">Estado</th>
+                                <th data-field="noedoc" style="font-size: 13px; font-weight: normal; text-align: center; align-items: center; justify-content: center;" scope="col">No. Doc</th>
+                                <th data-field="tipodocumento" style="font-size: 13px; font-weight: normal; text-align: center; align-items: center; justify-content: center;" scope="col">Tipo<br>documento</th>
+                                <th data-field="razonsocialemisor" style="font-size: 13px; font-weight: normal; text-align: center; align-items: center; justify-content: center;" scope="col">Razón social<br>emisor</th>
+                                <th data-field="razonsocialreceptor" style="font-size: 13px; font-weight: normal; text-align: center; align-items: center; justify-content: center;" scope="col">Razón social<br>receptor</th>
+                                <th data-field="ruc" style="font-size: 13px; font-weight: normal; text-align: center; align-items: center; justify-content: center;" scope="col">RUC</th>
+                                <th data-field="fechaemision" style="font-size: 13px; font-weight: normal; text-align: center; align-items: center; justify-content: center;" scope="col">Fecha<br>emisión</th>
+                                <th data-field="fecharegistro" style="font-size: 13px; font-weight: normal; text-align: center; align-items: center; justify-content: center;" scope="col">Fecha<br>registro eDoc</th>
+                                <th data-field="cufe" style="font-size: 13px; font-weight: normal; text-align: center; align-items: center; justify-content: center;" scope="col">CUFE</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row" style="border-radius: 20px 0px 0px 20px;">
+                                    <div style="justify-content: center; text-align: center; align-items: center;">
+                                        <button class="focusNone" style="border: none;"><span class="icon-pdf" style="padding: 0px 2px 0px 0px;"></span></button>
+                                        <button class="focusNone" style="border: none;"><span style="padding: 0px 5px 0px 5px; background: transparent;" class="icon-xml"></span></button>
+                                        <button class="focusNone" style="border: none;"><span style="padding: 0px 7px 0px 2px; background: transparent;" class="icon-descargar"></span></button>
+                                            <div class="btn-group" style="padding: 0px; margin: 0px;">
+                                                <button type="button" class="btn-default focusNone"
+                                                        data-toggle="dropdown" style="border: none;">
+                                                <span style="padding: 0px 0px 0px 5px; background: transparent;" class="icon-opciones"></span>
+                                                </button>
+                                                <ul class="dropdown-menu" role="menu" style="padding: 10px; margin: 0px;">
+                                                
+                                                <li><a href="#" style="font-weight: normal; font-size: 13px;" data-toggle="modal" data-target="#verhistorialdeeventos">Ver historial de eventos</a></li>  
+                                                <div class="lineaHorizontal" style="width: 100%;"></div>
+                                                <li><a href="#" style="font-weight: normal; font-size: 13px;" data-toggle="modal" data-target="#verreenviarcorreo">Reenviar correo</a></li>
+                                                <div class="lineaHorizontal" style="width: 100%;"></div>
+                                                <li><a href="#" style="font-weight: normal; font-size: 13px;" data-toggle="modal" data-target="#verreenviarwhatsapp">Reenviar whatsapp</a></li>
+                                                <div class="lineaHorizontal" style="width: 100%;"></div>
+                                                <li><a href="#" style="font-weight: normal; font-size: 13px;" data-toggle="modal" data-target="#verreenviarsms">Reenviar SMS</a></li>
+                                                </ul>
+                                            </div>
+                                    </div>
+                                </th>
+                                    
+                                <td>uno</td>
+                                <td>dos</td>
+                                <td>tres</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td style="border-radius: 0px 20px 20px 0px;"></td>
+                                
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>uno</td>
+                                <td>dos</td>
+                                <td>tres</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                
+                            </tr>
+                            <tr>
+                                <th scope="row" style="border-radius: 20px 0px 0px 20px;">3</th>
+                                <td>uno</td>
+                                <td>dos</td>
+                                <td>tres</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td style="border-radius: 0px 20px 20px 0px;"></td>
+                                
+                            </tr>
+                            <tr>
+                                <th scope="row">4</th>
+                                <td>uno</td>
+                                <td>dos</td>
+                                <td>tres</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                
+                            </tr>
+                            <tr>
+                                <th scope="row" style="border-radius: 20px 0px 0px 20px;">5</th>
+                                <td>uno</td>
+                                <td>dos</td>
+                                <td>tres</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td style="border-radius: 0px 20px 20px 0px;"></td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row" style="border-radius: 20px 0px 0px 20px;">5</th>
+                                <td>uno</td>
+                                <td>dos</td>
+                                <td>tres</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td style="border-radius: 0px 20px 20px 0px;"></td>
+                            </tr>
+                            </tbody>
+                        </div>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper js, then Bootstrap js -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<!--datetimepicker-->
+
+<script src="/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+<script src="/datetimepicker/scripts.js"></script>
+
+<script src="/table/bootstrap-table.js"></script>
+<script src="/table/bootstrap-table-es-ES.js"></script>
+
+<script src="/table/paginacionTabla.js"></script>
+<script src="/table/paginacionTabla2.js"></script>
+
+<script>
+
+    const btnSidebar = document.querySelector('.btn-sidebar');
+    console.log(btnSidebar);
+
+    btnSidebar.addEventListener('click', function(){
+        console.log('clickk');
+        document.getElementById('sidebar').classList.toggle('active');
+        document.getElementById('cuerpo').classList.toggle('active');
+        document.getElementById('cuerpoPrincipal').classList.toggle('margenIzquierda');
+    });
+
+</script>
+
+<script>
+
+$( document ).ready(function() {
+    $('.dropdown').each(function (key, dropdown) {
+        var $dropdown = $(dropdown);
+        $dropdown.find('.dropdown-menu a').on('click', function () {
+            $dropdown.find('button').text($(this).text()).append(' <span class="caret"></span>');
+        });
+    });
+});
+
+</script>
+
+</body>
+</html>

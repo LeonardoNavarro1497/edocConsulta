@@ -1,0 +1,171 @@
+@font-face {
+  font-family: 'icons_portalConsulta';
+  src:  url('icons/icons_portalConsulta.eot?tru7gi');
+  src:  url('icons/icons_portalConsulta.eot?tru7gi#iefix') format('embedded-opentype'),
+    url('icons/icons_portalConsulta.ttf?tru7gi') format('truetype'),
+    url('icons/icons_portalConsulta.woff?tru7gi') format('woff'),
+    url('icons/icons_portalConsulta.svg?tru7gi#icons_portalConsulta') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icons_portalConsulta' !important;
+  speak: never;
+  font-size: normal;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-actualizar:before {
+  content: "\e900";
+}
+.icon-add:before {
+  content: "\e901";
+}
+.icon-addRecurso:before {
+  content: "\e902";
+}
+.icon-administracion:before {
+  content: "\e903";
+}
+.icon-adminUsuarios:before {
+  content: "\e904";
+}
+.icon-buscar:before {
+  content: "\e905";
+}
+.icon-clientes:before {
+  content: "\e906";
+}
+.icon-close:before {
+  content: "\e907";
+}
+.icon-closeMenu:before {
+  content: "\e908";
+}
+.icon-descargar:before {
+  content: "\e909";
+  font-size: 25px;
+  color: rgb(0, 228, 0);
+}
+.icon-descargaXls:before {
+  content: "\e90a";
+  font-size: 25px;
+}
+.icon-documentos:before {
+  content: "\e90b";
+}
+.icon-down:before {
+  content: "\e90c";
+}
+.icon-editar:before {
+  content: "\e90d";
+}
+.icon-eDoc:before {
+  content: "\e90e";
+}
+.icon-eliminar:before {
+  content: "\e90f";
+}
+.icon-emision:before {
+  content: "\e910";
+}
+.icon-emitidas:before {
+  content: "\e911";
+  font-size: 90px;
+  padding: 0px;
+  margin: 0px;
+}
+.icon-enviarMail:before {
+  content: "\e912";
+}
+.icon-facturasEmitidad:before {
+  content: "\e913";
+}
+.icon-forward:before {
+  content: "\e914";
+}
+.icon-GuruSoft:before {
+  content: "\e915";
+}
+.icon-mailEnviados:before {
+  content: "\e916";
+}
+.icon-notaCredito:before {
+  content: "\e917";
+  font-size: 20px;
+}
+.icon-notaDebito:before {
+  content: "\e918";
+  font-size: 20px;
+}
+.icon-notificaciones:before {
+  content: "\e919";
+}
+.icon-notificacionSend:before {
+  content: "\e91a";
+}
+.icon-opciones:before {
+  content: "\e91b";
+  font-size: 25px;
+  color: rgb(134, 134, 134);
+}
+.icon-openMenu:before {
+  content: "\e91c";
+}
+.icon-pdf:before {
+  content: "\e91d";
+  font-size: 25px;
+  color: red;
+}
+.icon-proveedores:before {
+  content: "\e91e";
+}
+.icon-recepcion:before {
+  content: "\e91f";
+}
+.icon-roles:before {
+  content: "\e920";
+}
+.icon-selectorDown:before {
+  content: "\e921";
+}
+.icon-sesionIniciada:before {
+  content: "\e922";
+}
+.icon-sms:before {
+  content: "\e923";
+}
+.icon-tablero:before {
+  content: "\e924";
+}
+.icon-usuario:before {
+  content: "\e925";
+}
+.icon-usuariosConectados:before {
+  content: "\e926";
+}
+.icon-verificado:before {
+  content: "\e927";
+}
+.icon-visualizar:before {
+  content: "\e928";
+}
+.icon-whatsapp:before {
+  content: "\e929";
+}
+.icon-xml:before {
+  content: "\e92a";
+  font-size: 25px;
+  color: blue;
+}

@@ -1,0 +1,118 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background: rgb(255, 255, 255);
+    color: black;
+}
+
+.contenedor{
+    margin-left: 350px;
+    margin-right: 350px;
+    margin-top: 100px;
+    display: grid;
+    /*grid-gap: 20px;*/
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(1, auto);
+}
+
+.contenedor{
+    border-radius: 20px;
+    background: #fff;
+}
+
+.contenedor .caja1{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(2, auto);
+}
+
+.contenedor .caja1 .arriba{
+    background: url(/sprites/LogosGuruSoft_eDoc/Imagotipo_eDoc.svg) no-repeat top;
+    margin-top: 80px;
+    background-size: 50%;
+    border-radius: 20px 0px 0px 20px;
+}
+
+.contenedor .caja1 .abajo{
+    background: url(/sprites/LogosGuruSoft_eDoc/Isotipo_eDoc.svg) no-repeat top;
+    padding-bottom: 150px;
+    background-size: 106%;
+    border-radius: 20px 0px 0px 20px;
+}
+
+.contenedor .caja2{
+    padding: 70px;
+    background: rgb(5, 37, 131);
+    border-radius: 0px 20px 20px 0px;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(5, auto);
+}
+
+.caja2 h1{
+    margin: 0;
+    padding: 0 0 20px;
+    font-weight: bold;
+    display: block;
+    color:  #fff;
+    font-size: 26px;
+}
+
+.caja2 label{
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    display: block;
+    color: #fff;
+}
+
+.caja2 input{
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.caja2 input[type="text"]{
+    border: none;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    height: 40px;
+    color: #fff;
+    font-size: 12px;
+}
+
+.caja2 input::placeholder{
+    color: rgb(175, 175, 175);
+    padding-left: 10px;
+}
+
+.recaptcha{
+    padding-top: 10px;
+    width: 60%;
+    height: 60%;
+}
+
+.contenedor div button{
+    margin-top: 20px;
+}
+
+.contenedor button{
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #fff;
+    background: rgb(59, 148, 250);
+    border-radius: 8px;
+    border: none;
+}
+
+.pie{
+    width: 200px;
+    padding: 30px 20px 0 15px;
+}

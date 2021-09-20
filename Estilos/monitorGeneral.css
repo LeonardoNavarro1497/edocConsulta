@@ -1,0 +1,205 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    position: relative;
+    margin-left: 0px;
+    transition: all 1s;
+    background: rgb(235, 235, 235);
+}
+
+#sidebar{
+    position: fixed;
+    width: 290px;
+    height: 100%;
+    background: rgb(40, 132, 218);
+    left: -290px;
+    transition: all 1s;
+}
+
+#sidebar.active{
+    left: 0;
+}
+
+body.active{
+    left: 0;
+    margin-left: 370px;
+}
+
+/* #cuerpoPrincipal.margenIzquierda{
+    position: fixed;
+    left: 30px;
+    padding: 10px 40px 0px 60px;
+} */
+
+/*#sidebar ul li{
+    color: #fff;
+    text-align: center;
+}*/
+
+#sidebar .btn-sidebar{
+    position: absolute;
+    left: 310px;
+    cursor: pointer;
+}
+
+#sidebar .btn-sidebar span{
+    display: block;
+    width: 40px;
+    text-align: center;font-size: 30px;
+    /*border: 1px solid #000;*/
+    margin-top: 10px;
+}
+
+.contenedor{
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(6, auto);
+    padding: 10px 0px 0px 35px;
+}
+
+.contenedor > div{
+    background: #fff;
+    border-radius: 10px;
+    
+}
+
+.contenedor .encabezado,
+.contenedor .contenido,
+.contenedor .buscar,
+.contenedor .fecha,
+.contenedor .buscarTabla,
+.contenedor .tabla{
+    grid-column: span 3;
+}
+
+.contenedor .contenido{
+    display: grid;
+    grid-gap: 15px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(1, auto);
+    padding: 10px;
+}
+
+.contenedor .contenido .slot1{
+    background: rgb(255, 255, 255);
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    color: rgb(134, 134, 134);
+    grid-column: span 1;
+}
+
+.contenedor .contenido .slot2{
+    grid-column: span 1;
+} 
+
+.contenedor .contenido .slot3{
+    /* background: rgb(226, 226, 226); */
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    /* text-align: center; */
+    grid-column: span 2;
+
+}
+
+.lineaHorizontal{
+    width: 50%;
+    height: 0.07px;
+    border-top: solid rgb(226, 226, 226) 0px;
+}
+
+.lineaHorizontal2{
+    width: 50%;
+    height: 0.1px;
+    border-top: solid rgb(226, 226, 226) 1.2px;
+}
+
+.lineaVertical{
+    width: 50px;
+    height: 100%;
+    border-right: solid rgb(226, 226, 226) 2.2px;
+}
+
+.contenedor.buscar,
+.contenido.fecha{
+    background: rgb(235, 235, 235);
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(1, auto);
+    
+}
+
+.buscar input[type="text"],
+.fecha input[type="text"],
+.buscarTabla input[type="text"]{
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    height: 35px;
+    font-size: 12px;
+    padding: 15px;
+}
+
+.buscar ::placeholder,
+.fecha ::placeholder,
+.buscarTabla ::placeholder{
+    color: rgba(179, 179, 179, 0.815);
+}
+
+
+
+#fechaDesde, #fechaHasta{
+    background: #fff;
+}
+
+/* .buscar .hoverBtn:hover{
+    text-decoration: none;
+    color: aqua;
+} */
+
+.buscarTabla{
+    background: rgb(235, 235, 235);
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(1, auto);
+}
+
+.contenedor.tabla{
+    background: transparent;
+}
+
+.tabla1 tbody tr td{
+    border-top:0px !important;
+}
+
+.focusNone:focus{
+    outline: none;
+    outline-offset: 0;
+}
+
+.table2 th, .table2 td {
+    border-left: none !important;
+}
+
+.table2 th, .table2 td{
+    border-bottom: none !important;
+}
+
+.table3 th, .table3 td {
+    border-top: none !important;
+    border-left: none !important;
+}
+
+.table3 th, .table3 td{
+    border-bottom: none !important;
+}
+
